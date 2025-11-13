@@ -713,7 +713,9 @@ def validate_file_upload(file, max_size_mb=1024, allowed_extensions=None):
     
     #  FIX: Verify file content matches extension
     try:
-        import magic
+        if magic is None:
+            app.logger.warning('python-magic not installed. File content validation skipped.')
+            return True, 'Valid'
         
         # Read first 2KB for magic number detection
         file_header = file.read(2048)

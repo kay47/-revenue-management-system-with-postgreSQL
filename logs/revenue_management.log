@@ -18093,3 +18093,4 @@ jinja2.exceptions.TemplateRuntimeError: No filter named 'extract_total'.
 2025-11-13 06:02:57,228 INFO: Response 6d3c627200f0a83e: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:145]
 2025-11-13 06:02:57,475 INFO: Request d5621679d9ca289f: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:134]
 2025-11-13 06:02:57,478 INFO: Response d5621679d9ca289f: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:145]
+2025-11-13 11:48:06,065 INFO: Revenue Management System startup [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:183]
