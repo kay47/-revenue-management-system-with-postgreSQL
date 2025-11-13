@@ -197,8 +197,7 @@ def main():
 ║     You can now run:                                       ║
 ║     flask run                                              ║
 ║                                                            ║
-║     Or for development:                                    ║
-║     python app.py                                          ║
+    ║     python app.py                                          ║
 ║                                                            ║
 ╚════════════════════════════════════════════════════════════╝
     """)
