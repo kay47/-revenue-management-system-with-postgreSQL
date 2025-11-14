@@ -21559,3 +21559,4 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate
 2025-11-14 21:33:12,787 INFO: Response 4b1a9ed62b9b1c1c: 304 in 0.011s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:149]
 2025-11-14 21:33:12,899 INFO: Request 89dae5845b30a848: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:138]
 2025-11-14 21:33:13,004 INFO: Response 89dae5845b30a848: 304 in 0.105s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:149]
+2025-11-14 21:35:35,160 INFO: Request 5e7063b04c8b234f: GET /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:138]
