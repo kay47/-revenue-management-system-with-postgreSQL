@@ -546,40 +546,38 @@
                     </tr>
                     
                     {# Arrears Breakdown (collapsible) #}
-                    {% if arrears_breakdown and arrears_breakdown|length > 0 %}
-                    <tr id="arrears-breakdown" style="display: none;">
-                        <td colspan="2" style="padding: 0;">
-                            <table class="table table-sm mb-0" style="font-size: 0.85rem; background: #fffbf0;">
-                                <thead>
-                                    <tr style="background: #fff3cd;">
-                                        <th>Year</th>
-                                        <th>Invoice No</th>
-                                        <th class="text-right">Original</th>
-                                        <th class="text-right">Credit</th>
-                                        <th class="text-right">Balance</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for arrear in arrears_breakdown %}
-                                    <tr>
-                                        <td>{{ arrear.year }}</td>
-                                        <td><small>{{ arrear.invoice_no }}</small></td>
-                                        <td class="text-right">{{ "{:,.2f}".format(arrear.get('original_balance', arrear.total - arrear.paid)) }}</td>
-                                        <td class="text-right" style="color: #2e7d32;">
-                                            {% if arrear.get('credit_applied', 0) > 0 %}
-                                                -{{ "{:,.2f}".format(arrear.credit_applied) }}
-                                            {% else %}
-                                                0.00
-                                            {% endif %}
-                                        </td>
-                                        <td class="text-right"><strong>{{ "{:,.2f}".format(arrear.balance) }}</strong></td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    {% endif %}
+{% if arrears_breakdown and arrears_breakdown|length > 0 %}
+<tr id="arrears-breakdown" style="display: none;">
+    <td colspan="2" style="padding: 0;">
+        <table class="table table-sm mb-0" style="font-size: 0.85rem; background: #fffbf0;">
+            <thead>
+                <tr style="background: #fff3cd;">
+                    <th>Year</th>
+                    <th>Invoice No</th>
+                    <th class="text-right">Total</th>
+                    <th class="text-right">Paid</th>
+                    <th class="text-right">Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for arrear in arrears_breakdown %}
+                <tr>
+                    <td>{{ arrear.year }}</td>
+                    <td><small>{{ arrear.invoice_no }}</small></td>
+                    <td class="text-right">{{ "{:,.2f}".format(arrear.total if arrear.total is defined else 0) }}</td>
+                    <td class="text-right" style="color: #2e7d32;">
+                        {{ "{:,.2f}".format(arrear.paid if arrear.paid is defined else 0) }}
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ "{:,.2f}".format(arrear.balance if arrear.balance is defined else (arrear.total - arrear.paid if (arrear.total is defined and arrear.paid is defined) else 0)) }}</strong>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </td>
+</tr>
+{% endif %}
                     
                     {# Payment for current year #}
                     <tr>
@@ -844,45 +842,46 @@
                 </div>
                 
                 <!-- Arrears Breakdown (if present) -->
-                {% if total_arrears > 0 %}
-                <div style="background: #fffbf0; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #ffc107;">
-                    <h4 style="color: #856404; margin-bottom: 1rem;">
-                        📋 Outstanding Arrears Breakdown
-                    </h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            <thead style="background: #fff3cd;">
-                                <tr>
-                                    <th>Year</th>
-                                    <th>Invoice No</th>
-                                    <th class="text-right">Invoice Total</th>
-                                    <th class="text-right">Amount Paid</th>
-                                    <th class="text-right">Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for arrear in arrears_breakdown %}
-                                <tr>
-                                    <td><strong>{{ arrear.year }}</strong></td>
-                                    <td>{{ arrear.invoice_no }}</td>
-                                    <td class="text-right">GHS {{ "{:,.2f}".format(arrear.total) }}</td>
-                                    <td class="text-right">GHS {{ "{:,.2f}".format(arrear.paid) }}</td>
-                                    <td class="text-right">
-                                        <strong style="color: #dc2626;">GHS {{ "{:,.2f}".format(arrear.balance) }}</strong>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                <tr style="background: #fff3cd; font-weight: bold;">
-                                    <td colspan="4" class="text-right">Total Arrears:</td>
-                                    <td class="text-right">
-                                        <strong style="color: #dc2626;">GHS {{ "{:,.2f}".format(total_arrears) }}</strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                {% endif %}
+{% if total_arrears > 0 %}
+<div style="background: #fffbf0; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #ffc107;">
+    <h4 style="color: #856404; margin-bottom: 1rem;">
+        📋 Outstanding Arrears Breakdown
+    </h4>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead style="background: #fff3cd;">
+                <tr>
+                    <th>Year</th>
+                    <th>Invoice No</th>
+                    <th class="text-right">Invoice Total</th>
+                    <th class="text-right">Amount Paid</th>
+                    <th class="text-right">Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for arrear in arrears_breakdown %}
+                {% set arrear_balance = arrear.balance if arrear.balance is defined else (arrear.total - arrear.paid if (arrear.total is defined and arrear.paid is defined) else 0) %}
+                <tr>
+                    <td><strong>{{ arrear.year }}</strong></td>
+                    <td>{{ arrear.invoice_no }}</td>
+                    <td class="text-right">GHS {{ "{:,.2f}".format(arrear.total if arrear.total is defined else 0) }}</td>
+                    <td class="text-right">GHS {{ "{:,.2f}".format(arrear.paid if arrear.paid is defined else 0) }}</td>
+                    <td class="text-right">
+                        <strong style="color: #dc2626;">GHS {{ "{:,.2f}".format(arrear_balance) }}</strong>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr style="background: #fff3cd; font-weight: bold;">
+                    <td colspan="4" class="text-right">Total Arrears:</td>
+                    <td class="text-right">
+                        <strong style="color: #dc2626;">GHS {{ "{:,.2f}".format(total_arrears) }}</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
                 
                 <!-- Pay Invoice Button -->
                 {% if invoice.status != 'Paid' or total_arrears > 0 %}

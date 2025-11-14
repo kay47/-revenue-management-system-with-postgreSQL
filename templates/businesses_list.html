@@ -4,10 +4,12 @@
 
 {% block extra_css %}
 <style>
+    /* ==================== TABLE STYLES ==================== */
     .table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 0;
+        min-width: 1200px; /* Ensures horizontal scroll on smaller screens */
     }
 
     .table th, .table td {
@@ -15,6 +17,7 @@
         text-align: left;
         border-bottom: 1px solid #f0f0f0;
         vertical-align: middle;
+        white-space: nowrap; /* Prevents text wrapping in cells */
     }
 
     .table thead tr {
@@ -23,21 +26,117 @@
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
     }
 
     .table tbody tr:hover {
         background: #f9fafb;
+        transform: translateX(2px);
     }
     
     .table tbody tr.selected {
         background: #e0e7ff !important;
     }
 
+    /* ==================== TABLE RESPONSIVE CONTAINER ==================== */
     .table-responsive {
         width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        position: relative;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    
+
+    /* ==================== CUSTOM SCROLLBAR STYLING ==================== */
+    .table-responsive::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .table-responsive::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 5px;
+        margin: 0 10px;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 5px;
+        border: 2px solid #f1f5f9;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+    }
+
+    /* Firefox scrollbar styling */
+    .table-responsive {
+        scrollbar-width: thin;
+        scrollbar-color: #667eea #f1f5f9;
+    }
+
+    /* ==================== SCROLL SHADOW INDICATORS ==================== */
+    .table-responsive {
+        background:
+            linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+            linear-gradient(to left, white 30%, rgba(255,255,255,0)),
+            radial-gradient(farthest-side at 0% 50%, rgba(102,126,234,.3), rgba(0,0,0,0)),
+            radial-gradient(farthest-side at 100% 50%, rgba(102,126,234,.3), rgba(0,0,0,0));
+        background-repeat: no-repeat;
+        background-color: white;
+        background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+        background-position: 0 0, 100% 0, 0 0, 100% 0;
+        background-attachment: local, local, scroll, scroll;
+    }
+
+    /* ==================== STICKY COLUMNS ==================== */
+    .table thead th:nth-child(1),
+    .table tbody td:nth-child(1) {
+        position: sticky;
+        left: 0;
+        z-index: 20;
+        background: inherit;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.08);
+    }
+
+    .table thead th:nth-child(2),
+    .table tbody td:nth-child(2) {
+        position: sticky;
+        left: 50px;
+        z-index: 20;
+        background: inherit;
+        box-shadow: 2px 0 4px rgba(0,0,0,0.12);
+    }
+
+    /* Sticky column backgrounds */
+    .table thead th:nth-child(1),
+    .table thead th:nth-child(2) {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .table tbody tr:hover td:nth-child(1),
+    .table tbody tr:hover td:nth-child(2) {
+        background: #f9fafb;
+    }
+
+    .table tbody tr.selected td:nth-child(1),
+    .table tbody tr.selected td:nth-child(2) {
+        background: #e0e7ff;
+    }
+
+    .table tbody td:nth-child(1),
+    .table tbody td:nth-child(2) {
+        background: white;
+    }
+
+    /* ==================== SEARCH AREA ==================== */
     .search-area {
         padding: 1.5rem; 
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -65,8 +164,8 @@
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
-    /* Bulk Actions Bar */
+
+    /* ==================== BULK ACTIONS BAR ==================== */
     .bulk-actions-bar {
         display: none;
         padding: 1rem 1.5rem;
@@ -80,6 +179,18 @@
     
     .bulk-actions-bar.active {
         display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
     
     .bulk-actions-info {
@@ -90,6 +201,7 @@
     
     .bulk-actions-info strong {
         color: #92400e;
+        font-size: 1.1rem;
     }
     
     .bulk-actions-buttons {
@@ -113,6 +225,8 @@
     
     .btn-bulk-delete:hover {
         background: #991b1b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
     }
     
     .btn-clear-selection {
@@ -128,16 +242,23 @@
     
     .btn-clear-selection:hover {
         background: #4b5563;
+        transform: translateY(-2px);
     }
-    
-    /* Checkbox Styles */
+
+    /* ==================== CHECKBOX STYLES ==================== */
     .select-checkbox, .select-all-checkbox {
         width: 18px;
         height: 18px;
         cursor: pointer;
         accent-color: #667eea;
+        transition: transform 0.2s;
     }
-    
+
+    .select-checkbox:hover, .select-all-checkbox:hover {
+        transform: scale(1.1);
+    }
+
+    /* ==================== RESULTS SUMMARY ==================== */
     .results-summary {
         padding: 1rem 1.5rem;
         background: #f8f9fa;
@@ -151,110 +272,10 @@
     
     .results-summary strong {
         color: #667eea;
-    }
-    
-    .pagination {
-        list-style: none;
-        display: flex;
-        padding-left: 0;
-        border-radius: 0.25rem;
-        gap: 0.5rem;
+        font-size: 1.1rem;
     }
 
-    .page-item {
-        display: inline-block;
-    }
-
-    .page-link {
-        position: relative;
-        display: block;
-        padding: 0.5rem 0.875rem;
-        text-decoration: none;
-        color: #667eea;
-        background-color: #fff;
-        border: 2px solid #dee2e6;
-        border-radius: 8px;
-        transition: all 0.3s;
-        font-weight: 500;
-    }
-
-    .page-link:hover {
-        z-index: 2;
-        color: #fff;
-        background-color: #667eea;
-        border-color: #667eea;
-    }
-
-    .page-item.active .page-link {
-        z-index: 3;
-        color: #fff;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-color: #667eea;
-    }
-    
-    .page-item.disabled .page-link {
-        color: #6c757d;
-        pointer-events: none;
-        background-color: #fff;
-        border-color: #dee2e6;
-        opacity: 0.5;
-    }
-    
-    .delete-link {
-        color: #dc3545; 
-        background: none; 
-        border: none; 
-        cursor: pointer; 
-        text-decoration: none; 
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.5rem;
-        border-radius: 4px;
-        transition: all 0.2s;
-    }
-    .delete-link:hover {
-        background: #fee2e2;
-        color: #991b1b;
-    }
-    
-    .empty-state {
-        padding: 3rem; 
-        color: #999;
-        text-align: center;
-    }
-    
-    .empty-state i {
-        font-size: 3rem;
-        display: block;
-        margin-bottom: 1rem;
-        color: #d1d5db;
-    }
-    
-    .empty-state h3 {
-        color: #374151;
-        margin-bottom: 0.5rem;
-    }
-    
-    .empty-state a {
-        color: #667eea;
-        font-weight: 600;
-        text-decoration: none;
-    }
-    
-    .empty-state a:hover {
-        text-decoration: underline;
-    }
-    
-    .pagination-container {
-        padding: 1.5rem;
-        display: flex;
-        justify-content: center;
-        border-top: 1px solid #e5e7eb;
-    }
-    
-    /* ✅ NEW: Filter Controls */
+    /* ==================== FILTER CONTROLS ==================== */
     .filter-controls {
         display: flex;
         gap: 1rem;
@@ -316,6 +337,8 @@
     
     .btn-filter:hover {
         background: #5568d3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
     }
     
     .btn-clear-filter {
@@ -331,6 +354,7 @@
     
     .btn-clear-filter:hover {
         background: #5a6268;
+        transform: translateY(-2px);
     }
     
     .per-page-selector {
@@ -352,6 +376,11 @@
         border-radius: 6px;
         font-size: 0.9rem;
         cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .per-page-selector select:hover {
+        border-color: #667eea;
     }
     
     .active-filters {
@@ -378,6 +407,173 @@
     
     .filter-tag strong {
         color: #000;
+    }
+
+    /* ==================== PAGINATION ==================== */
+    .pagination {
+        list-style: none;
+        display: flex;
+        padding-left: 0;
+        border-radius: 0.25rem;
+        gap: 0.5rem;
+        margin: 0;
+    }
+
+    .page-item {
+        display: inline-block;
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.875rem;
+        text-decoration: none;
+        color: #667eea;
+        background-color: #fff;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        transition: all 0.3s;
+        font-weight: 500;
+    }
+
+    .page-link:hover {
+        z-index: 2;
+        color: #fff;
+        background-color: #667eea;
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-color: #667eea;
+    }
+    
+    .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #fff;
+        border-color: #dee2e6;
+        opacity: 0.5;
+    }
+    
+    .pagination-container {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid #e5e7eb;
+        background: #f9fafb;
+    }
+
+    /* ==================== ACTION BUTTONS ==================== */
+    .delete-link {
+        color: #dc3545; 
+        background: none; 
+        border: none; 
+        cursor: pointer; 
+        text-decoration: none; 
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+
+    .delete-link:hover {
+        background: #fee2e2;
+        color: #991b1b;
+        transform: translateX(2px);
+    }
+
+    /* ==================== EMPTY STATE ==================== */
+    .empty-state {
+        padding: 3rem; 
+        color: #999;
+        text-align: center;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 1rem;
+        color: #d1d5db;
+    }
+    
+    .empty-state h3 {
+        color: #374151;
+        margin-bottom: 0.5rem;
+    }
+    
+    .empty-state a {
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .empty-state a:hover {
+        text-decoration: underline;
+        color: #5568d3;
+    }
+
+    /* ==================== SCROLL HINT ==================== */
+    .scroll-hint {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(102, 126, 234, 0.95);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 30;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .table-responsive:hover .scroll-hint {
+        opacity: 1;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .table thead th:nth-child(1),
+        .table tbody td:nth-child(1) {
+            left: 0;
+        }
+
+        .table thead th:nth-child(2),
+        .table tbody td:nth-child(2) {
+            left: 45px;
+        }
+
+        .scroll-hint {
+            display: none;
+        }
+
+        .filter-controls {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .per-page-selector {
+            margin-left: 0;
+            justify-content: flex-start;
+        }
     }
 </style>
 {% endblock %}

@@ -991,5 +991,104 @@
 
     {% block extra_js %}{% endblock %}
     <script src="{{ url_for('static', filename='js/realtime-search.js') }}"></script>
+
+    <!-- 🆕 Activity Timeout Handler -->
+    {% if current_user.is_authenticated %}
+    <script>
+        (function() {
+            const AUTO_LOCK_TIMEOUT = {{ config.AUTO_LOCK_TIMEOUT }} * 1000; // 2 minutes in milliseconds
+            const AUTO_LOGOUT_TIMEOUT = {{ config.AUTO_LOGOUT_TIMEOUT }} * 1000; // 15 minutes in milliseconds
+            
+            let lockTimer;
+            let logoutTimer;
+            let lastActivity = Date.now();
+            let warningShown = false;
+            
+            // Track user activity events
+            const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click', 'keydown'];
+            
+            function resetTimers() {
+                lastActivity = Date.now();
+                warningShown = false;
+                
+                // Clear existing timers
+                clearTimeout(lockTimer);
+                clearTimeout(logoutTimer);
+                
+                // Set new timers
+                lockTimer = setTimeout(lockScreen, AUTO_LOCK_TIMEOUT);
+                logoutTimer = setTimeout(autoLogout, AUTO_LOGOUT_TIMEOUT);
+                
+                console.log('⏱️ Activity timers reset');
+            }
+            
+            function lockScreen() {
+                console.log('🔒 Auto-locking screen due to inactivity');
+                
+                // Store lock reason in sessionStorage
+                sessionStorage.setItem('lockReason', 'inactivity');
+                
+                // Redirect to lock screen
+                window.location.href = "{{ url_for('lock_screen') }}";
+            }
+            
+            function autoLogout() {
+                console.log('🚪 Auto-logging out due to inactivity');
+                
+                // Clear any pending timers
+                clearTimeout(lockTimer);
+                clearTimeout(logoutTimer);
+                
+                // Redirect to logout with timeout reason
+                window.location.href = "{{ url_for('logout') }}?reason=timeout";
+            }
+            
+            // Attach activity listeners to reset timers
+            events.forEach(function(event) {
+                document.addEventListener(event, resetTimers, true);
+            });
+            
+            // Initialize timers on page load
+            resetTimers();
+            
+            // Show countdown warning at 30 seconds before logout
+            setInterval(function() {
+                const timeSinceActivity = Date.now() - lastActivity;
+                const timeUntilLogout = AUTO_LOGOUT_TIMEOUT - timeSinceActivity;
+                
+                // Show warning at 30 seconds before logout (only once)
+                if (timeUntilLogout > 0 && timeUntilLogout <= 30000 && !warningShown) {
+                    warningShown = true;
+                    
+                    // Create warning alert
+                    const warningDiv = document.createElement('div');
+                    warningDiv.className = 'alert alert-error';
+                    warningDiv.style.position = 'fixed';
+                    warningDiv.style.top = '80px';
+                    warningDiv.style.right = '20px';
+                    warningDiv.style.zIndex = '9999';
+                    warningDiv.style.animation = 'slideDown 0.3s ease';
+                    warningDiv.innerHTML = `
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>⏱️ You will be logged out in 30 seconds due to inactivity. Move your mouse to stay logged in.</span>
+                    `;
+                    document.body.appendChild(warningDiv);
+                    
+                    // Auto-remove warning after 10 seconds
+                    setTimeout(() => {
+                        warningDiv.style.transition = 'opacity 0.3s';
+                        warningDiv.style.opacity = '0';
+                        setTimeout(() => warningDiv.remove(), 300);
+                    }, 10000);
+                }
+            }, 1000);
+            
+            console.log('✅ Activity timeout initialized:', {
+                lockTimeout: AUTO_LOCK_TIMEOUT / 1000 + ' seconds',
+                logoutTimeout: AUTO_LOGOUT_TIMEOUT / 1000 + ' seconds'
+            });
+        })();
+    </script>
+    {% endif %}
 </body>
 </html>

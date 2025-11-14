@@ -76,6 +76,10 @@ class Config:
     ALLOWED_EXTENSIONS = {'csv', 'xlsx', 'png', 'jpg', 'jpeg', 'pdf'}
     ITEMS_PER_PAGE = 20
     
+    # 🆕 NEW: Activity timeout settings
+    AUTO_LOCK_TIMEOUT = 120  # 2 minutes (in seconds)
+    AUTO_LOGOUT_TIMEOUT = 900  # 15 minutes (in seconds)
+    
 # ==================== OTP Configuration ====================
 # SMS Provider Selection
 SMS_PROVIDER = os.getenv('SMS_PROVIDER', 'mock').lower()  # mock, twilio, africastalking, vonage
@@ -1700,11 +1704,17 @@ def logout():
     log_action('User logged out')
     logout_user()
     
-    #  FIX: Clear flash messages before adding new one
+    # Clear flash messages before adding new one
     from flask import session
     session.pop('_flashes', None)
     
-    flash('Logged out successfully!', 'success')
+    # Check if logout was due to timeout
+    reason = request.args.get('reason')
+    if reason == 'timeout':
+        flash('You have been logged out due to 15 minutes of inactivity. Please log in again.', 'info')
+    else:
+        flash('Logged out successfully!', 'success')
+    
     return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])

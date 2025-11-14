@@ -422,6 +422,59 @@
                 document.getElementById('password-input').focus();
             }
         });
+
+        // Live clock
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // 🆕 Check if locked due to inactivity
+        window.addEventListener('load', () => {
+            const lockReason = sessionStorage.getItem('lockReason');
+            if (lockReason === 'inactivity') {
+                const lockReasonText = document.getElementById('lockReasonText');
+                if (lockReasonText) {
+                    lockReasonText.innerHTML = '<strong style="color: #ffc107;">🔒 Locked due to 2 minutes of inactivity</strong>';
+                }
+                // Clear the flag
+                sessionStorage.removeItem('lockReason');
+            }
+            
+            document.getElementById('password-input').focus();
+        });
+
+        // Handle form submission with loading animation
+        function handleSubmit(event) {
+            const btn = document.getElementById('unlock-btn');
+            btn.classList.add('loading');
+            btn.querySelector('span').textContent = 'Unlocking...';
+        }
+
+        // Auto-dismiss alerts after 5 seconds
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.transition = 'opacity 0.5s, transform 0.5s';
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateY(-10px)';
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 5000);
+
+        // Keyboard shortcut: Enter to focus password input
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.activeElement !== document.getElementById('password-input')) {
+                e.preventDefault();
+                document.getElementById('password-input').focus();
+            }
+        });
     </script>
 </body>
 </html>
