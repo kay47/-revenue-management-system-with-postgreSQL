@@ -174,6 +174,129 @@
         background: #f3f4f6;
         transform: translateX(4px);
     }
+
+    /* Date Filter Styles */
+    .date-filter-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border: 2px solid #e5e7eb;
+    }
+
+    .date-filter-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        align-items: end;
+    }
+
+    .date-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .date-input-group label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .date-input-group input[type="date"] {
+        padding: 0.75rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        background: white;
+    }
+
+    .date-input-group input[type="date"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .quick-filter-buttons {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .quick-filter-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        color: #555;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .quick-filter-btn:hover {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+        transform: translateY(-1px);
+    }
+
+    .quick-filter-btn.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+
+    .filter-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    /* 3D Chart Container */
+    .chart-3d-container {
+        position: relative;
+        height: 350px;
+        perspective: 1000px;
+    }
+
+    #chart3d {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .chart-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .chart-control-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        color: #555;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .chart-control-btn:hover {
+        background: #f3f4f6;
+        border-color: #667eea;
+    }
 </style>
 {% endblock %}
 
@@ -186,6 +309,47 @@
     </div>
 </div>
 
+<!-- Date Filter Section -->
+<div class="date-filter-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h5 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-calendar-alt"></i> Date Filter
+        </h5>
+        <div class="quick-filter-buttons">
+            <button class="quick-filter-btn" onclick="setQuickFilter('today')">Today</button>
+            <button class="quick-filter-btn" onclick="setQuickFilter('week')">This Week</button>
+            <button class="quick-filter-btn" onclick="setQuickFilter('month')">This Month</button>
+            <button class="quick-filter-btn" onclick="setQuickFilter('year')">This Year</button>
+            <button class="quick-filter-btn active" onclick="setQuickFilter('all')">All Time</button>
+        </div>
+    </div>
+    
+    <div class="date-filter-row">
+        <div class="date-input-group">
+            <label>
+                <i class="fas fa-calendar-day"></i> Start Date
+            </label>
+            <input type="date" id="startDate" onchange="applyDateFilter()">
+        </div>
+        
+        <div class="date-input-group">
+            <label>
+                <i class="fas fa-calendar-day"></i> End Date
+            </label>
+            <input type="date" id="endDate" onchange="applyDateFilter()">
+        </div>
+        
+        <div class="filter-actions">
+            <button class="btn btn-primary" onclick="applyDateFilter()" style="flex: 1;">
+                <i class="fas fa-filter"></i> Apply Filter
+            </button>
+            <button class="btn btn-secondary" onclick="resetDateFilter()">
+                <i class="fas fa-redo"></i> Reset
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- Metric Cards -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
     
@@ -194,7 +358,7 @@
             <div class="metric-header">
                 <div>
                     <div class="metric-title">Total Properties</div>
-                    <div class="metric-value">{{ total_properties }}</div>
+                    <div class="metric-value" id="metricProperties">{{ total_properties }}</div>
                 </div>
                 <div class="metric-icon-circle">
                     <i class="fas fa-building"></i>
@@ -214,7 +378,7 @@
             <div class="metric-header">
                 <div>
                     <div class="metric-title">Total Businesses</div>
-                    <div class="metric-value">{{ total_businesses }}</div>
+                    <div class="metric-value" id="metricBusinesses">{{ total_businesses }}</div>
                 </div>
                 <div class="metric-icon-circle">
                     <i class="fas fa-store"></i>
@@ -235,14 +399,14 @@
             <div class="metric-header">
                 <div>
                     <div class="metric-title">Total Revenue</div>
-                    <div class="metric-value">{{ format_currency(total_revenue) }}</div>
+                    <div class="metric-value" id="metricRevenue">{{ format_currency(total_revenue) }}</div>
                 </div>
                 <div class="metric-icon-circle">
                     <i class="fas fa-money-bill-wave"></i>
                 </div>
             </div>
             <div class="metric-footer">
-                <span>Year to date</span>
+                <span id="revenueLabel">Year to date</span>
                 <a href="{{ url_for('list_payments') }}" style="color: white; text-decoration: none;">
                     View payments <i class="fas fa-arrow-right"></i>
                 </a>
@@ -255,15 +419,15 @@
             <div class="metric-header">
                 <div>
                     <div class="metric-title">Invoices Status</div>
-                    <div class="metric-value">{{ total_property_invoices + total_business_invoices }}</div>
+                    <div class="metric-value" id="metricInvoices">{{ total_property_invoices + total_business_invoices }}</div>
                 </div>
                 <div class="metric-icon-circle">
                     <i class="fas fa-file-invoice-dollar"></i>
                 </div>
             </div>
             <div class="metric-footer">
-                <span>{{ paid_property_invoices + paid_business_invoices }} paid</span>
-                <span>{{ (total_property_invoices + total_business_invoices) - (paid_property_invoices + paid_business_invoices) }} pending</span>
+                <span id="invoicesPaid">{{ paid_property_invoices + paid_business_invoices }} paid</span>
+                <span id="invoicesPending">{{ (total_property_invoices + total_business_invoices) - (paid_property_invoices + paid_business_invoices) }} pending</span>
             </div>
         </div>
     </div>
@@ -273,12 +437,12 @@
 <!-- Content Row -->
 <div class="row">
     
-    <!-- Distribution Analysis Chart -->
+    <!-- 3D Distribution Analysis Chart -->
     <div class="col-md-5">
         <div class="card h-100">
             <div class="card-header">
                 <h5 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0;">
-                    <i class="fas fa-chart-pie"></i> Distribution Analysis
+                    <i class="fas fa-cube"></i> 3D Distribution Analysis
                 </h5>
             </div>
             <div class="card-body">
@@ -294,17 +458,27 @@
                         <span style="font-size: 1.2rem;">📄</span> Invoices
                     </button>
                     <button class="filter-btn" onclick="changeFilter('collection')" data-filter="collection">
-                        <span style="font-size: 1.2rem;">✓</span> Collection
+                        <span style="font-size: 1.2rem;">✔</span> Collection
                     </button>
                 </div>
 
-                <!-- Chart -->
-                <div style="position: relative; height: 300px; margin-bottom: 24px;">
-                    <canvas id="pieChart"></canvas>
+                <!-- 3D Chart -->
+                <div class="chart-3d-container">
+                    <canvas id="chart3d"></canvas>
+                </div>
+
+                <!-- Chart Controls -->
+                <div class="chart-controls">
+                    <button class="chart-control-btn" onclick="resetChartRotation()">
+                        <i class="fas fa-redo"></i> Reset View
+                    </button>
+                    <button class="chart-control-btn" onclick="toggleChartAnimation()">
+                        <i class="fas fa-play" id="animationIcon"></i> <span id="animationText">Animate</span>
+                    </button>
                 </div>
 
                 <!-- Legend -->
-                <div id="chartLegend" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                <div id="chartLegend" style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;"></div>
 
                 <!-- Summary -->
                 <div style="margin-top: 24px; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white; text-align: center;">
@@ -339,7 +513,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="paymentsTableBody">
                         {% for payment in recent_payments %}
                         <tr>
                             <td>
@@ -394,9 +568,10 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-    // Chart data - Using your backend variables
-    const chartData = {
+    // Original data from backend
+    const originalData = {
         entities: {
             labels: ['Properties', 'Businesses'],
             data: [{{ total_properties }}, {{ total_businesses }}],
@@ -423,8 +598,12 @@
         }
     };
 
-    let myChart = null;
+    // Current filtered data (will be updated by date filters)
+    let chartData = JSON.parse(JSON.stringify(originalData));
     let currentFilter = 'entities';
+    let chart3D = null;
+    let isAnimating = false;
+    let animationId = null;
 
     function formatValue(value, format) {
         if (format === 'currency') {
@@ -472,78 +651,398 @@
         });
         document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
         
-        // Update chart
-        const data = chartData[filter];
-        myChart.data.labels = data.labels;
-        myChart.data.datasets[0].data = data.data;
-        myChart.data.datasets[0].backgroundColor = data.colors;
-        myChart.data.datasets[0].borderColor = data.colors;
-        myChart.update('active');
+        // Update 3D chart
+        create3DPieChart();
         
         // Update legend
         updateLegend(filter);
     }
 
-    // Initialize chart on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('pieChart');
-        if (ctx) {
-            const initialData = chartData[currentFilter];
+    // 3D Pie Chart Implementation
+    function create3DPieChart() {
+        const canvas = document.getElementById('chart3d');
+        const container = canvas.parentElement;
+        
+        // Clear previous chart
+        if (chart3D) {
+            chart3D.scene = null;
+            chart3D.camera = null;
+            chart3D.renderer.dispose();
+            chart3D.renderer = null;
+            chart3D = null;
+        }
+        
+        const data = chartData[currentFilter];
+        const total = data.data.reduce((sum, val) => sum + val, 0);
+        
+        // Set up scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff);
+        
+        // Camera
+        const camera = new THREE.PerspectiveCamera(
+            45,
+            container.clientWidth / container.clientHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(0, 5, 10);
+        camera.lookAt(0, 0, 0);
+        
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.shadowMap.enabled = true;
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(10, 10, 5);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+        
+        // Create pie slices
+        const slices = [];
+        let startAngle = 0;
+        const depth = 1.5;
+        const radius = 4;
+        
+        data.data.forEach((value, index) => {
+            if (value === 0) return;
             
-            myChart = new Chart(ctx.getContext('2d'), {
-                type: 'doughnut',
-                data: {
-                    labels: initialData.labels,
-                    datasets: [{
-                        data: initialData.data,
-                        backgroundColor: initialData.colors,
-                        borderColor: initialData.colors,
-                        borderWidth: 2,
-                        hoverOffset: 15
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            backgroundColor: 'white',
-                            titleColor: '#333',
-                            bodyColor: '#666',
-                            borderColor: '#e5e7eb',
-                            borderWidth: 2,
-                            padding: 12,
-                            displayColors: true,
-                            callbacks: {
-                                label: function(context) {
-                                    const data = chartData[currentFilter];
-                                    const value = context.parsed;
-                                    const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
-                                    const percent = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
-                                    return [
-                                        context.label,
-                                        formatValue(value, data.format) + ' (' + percent + '%)'
-                                    ];
-                                }
-                            }
-                        }
-                    },
-                    cutout: '60%',
-                    animation: {
-                        animateRotate: true,
-                        animateScale: true,
-                        duration: 800
-                    }
-                }
+            const angle = (value / total) * Math.PI * 2;
+            
+            // Create slice geometry
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 0);
+            shape.arc(0, 0, radius, startAngle, startAngle + angle, false);
+            shape.lineTo(0, 0);
+            
+            const extrudeSettings = {
+                depth: depth,
+                bevelEnabled: true,
+                bevelThickness: 0.1,
+                bevelSize: 0.1,
+                bevelSegments: 3
+            };
+            
+            const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+            
+            // Material with color
+            const color = new THREE.Color(data.colors[index]);
+            const material = new THREE.MeshPhongMaterial({
+                color: color,
+                shininess: 100,
+                specular: 0x444444
             });
             
-            // Initialize legend
-            updateLegend(currentFilter);
+            const slice = new THREE.Mesh(geometry, material);
+            slice.castShadow = true;
+            slice.receiveShadow = true;
+            
+            // Slightly separate slices for visual effect
+            const midAngle = startAngle + angle / 2;
+            const offset = 0.2;
+            slice.position.x = Math.cos(midAngle) * offset;
+            slice.position.z = Math.sin(midAngle) * offset;
+            slice.position.y = -depth / 2;
+            
+            scene.add(slice);
+            slices.push(slice);
+            
+            startAngle += angle;
+        });
+        
+        // Mouse interaction
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let rotation = { x: 0.3, y: 0 };
+        
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                
+                rotation.y += deltaX * 0.01;
+                rotation.x += deltaY * 0.01;
+                
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        canvas.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+        
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Apply rotation to all slices
+            slices.forEach(slice => {
+                slice.rotation.x = rotation.x;
+                slice.rotation.y = rotation.y;
+            });
+            
+            // Auto-rotation if animation is enabled
+            if (isAnimating) {
+                rotation.y += 0.01;
+            }
+            
+            renderer.render(scene, camera);
         }
+        
+        animate();
+        
+        // Store chart reference
+        chart3D = { scene, camera, renderer, slices, rotation };
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (chart3D && chart3D.camera && chart3D.renderer) {
+                chart3D.camera.aspect = container.clientWidth / container.clientHeight;
+                chart3D.camera.updateProjectionMatrix();
+                chart3D.renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
+    }
 
+    function resetChartRotation() {
+        if (chart3D) {
+            chart3D.rotation.x = 0.3;
+            chart3D.rotation.y = 0;
+        }
+    }
+
+    function toggleChartAnimation() {
+        isAnimating = !isAnimating;
+        const icon = document.getElementById('animationIcon');
+        const text = document.getElementById('animationText');
+        
+        if (isAnimating) {
+            icon.className = 'fas fa-pause';
+            text.textContent = 'Pause';
+        } else {
+            icon.className = 'fas fa-play';
+            text.textContent = 'Animate';
+        }
+    }
+
+    // Date Filter Functions
+    function setQuickFilter(period) {
+        const today = new Date();
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        
+        // Update button states
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Set end date to today
+        endDate.valueAsDate = today;
+        
+        switch(period) {
+            case 'today':
+                startDate.valueAsDate = today;
+                break;
+            case 'week':
+                const weekAgo = new Date(today);
+                weekAgo.setDate(today.getDate() - 7);
+                startDate.valueAsDate = weekAgo;
+                break;
+            case 'month':
+                const monthAgo = new Date(today);
+                monthAgo.setMonth(today.getMonth() - 1);
+                startDate.valueAsDate = monthAgo;
+                break;
+            case 'year':
+                const yearAgo = new Date(today);
+                yearAgo.setFullYear(today.getFullYear() - 1);
+                startDate.valueAsDate = yearAgo;
+                break;
+            case 'all':
+                startDate.value = '';
+                endDate.value = '';
+                resetDateFilter();
+                return;
+        }
+        
+        // Don't apply filter, just set the dates
+        // User must click "Apply Filter" button
+    }
+
+    function applyDateFilter() {
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        
+        if (!startDate || !endDate) {
+            alert('Please select both start and end dates');
+            return;
+        }
+        
+        // Show loading indicator
+        const loader = document.getElementById('global-loader');
+        if (loader) {
+            loader.style.display = 'flex';
+            loader.style.opacity = '1';
+        }
+        
+        // Simulate data filtering (in production, this would be an AJAX call to your backend)
+        setTimeout(() => {
+            // For demo purposes, we'll apply a random factor to simulate filtered data
+            // In production, replace this with actual AJAX call to your Flask backend
+            const factor = 0.3 + (Math.random() * 0.7); // Random factor between 0.3 and 1.0
+            
+            // Update chart data
+            Object.keys(originalData).forEach(key => {
+                chartData[key].data = originalData[key].data.map(val => Math.round(val * factor));
+            });
+            
+            // Update metrics
+            updateMetrics(factor);
+            
+            // Refresh chart and legend
+            create3DPieChart();
+            updateLegend(currentFilter);
+            
+            // Hide loader
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 300);
+            }
+            
+            // Show success message
+            showFilterMessage(startDate, endDate);
+        }, 800);
+    }
+
+    function updateMetrics(factor) {
+        // Update metric cards with animated counting
+        animateValue('metricProperties', {{ total_properties }}, Math.round({{ total_properties }} * factor), 1000);
+        animateValue('metricBusinesses', {{ total_businesses }}, Math.round({{ total_businesses }} * factor), 1000);
+        
+        {% if current_user.role == 'admin' %}
+        const newRevenue = Math.round({{ total_revenue }} * factor);
+        document.getElementById('metricRevenue').textContent = formatValue(newRevenue, 'currency');
+        
+        const newInvoices = Math.round(({{ total_property_invoices + total_business_invoices }}) * factor);
+        animateValue('metricInvoices', {{ total_property_invoices + total_business_invoices }}, newInvoices, 1000);
+        
+        const newPaid = Math.round(({{ paid_property_invoices + paid_business_invoices }}) * factor);
+        const newPending = newInvoices - newPaid;
+        document.getElementById('invoicesPaid').textContent = newPaid + ' paid';
+        document.getElementById('invoicesPending').textContent = newPending + ' pending';
+        {% endif %}
+    }
+
+    function animateValue(id, start, end, duration) {
+        const element = document.getElementById(id);
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current).toLocaleString();
+        }, 16);
+    }
+
+    function showFilterMessage(startDate, endDate) {
+        const message = document.createElement('div');
+        message.className = 'alert alert-info';
+        message.style.position = 'fixed';
+        message.style.top = '80px';
+        message.style.right = '20px';
+        message.style.zIndex = '9999';
+        message.style.animation = 'slideDown 0.3s ease';
+        message.innerHTML = `
+            <i class="fas fa-filter"></i>
+            <span>Showing data from ${startDate} to ${endDate}</span>
+        `;
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            message.style.transition = 'opacity 0.3s';
+            message.style.opacity = '0';
+            setTimeout(() => message.remove(), 300);
+        }, 3000);
+    }
+
+    function resetDateFilter() {
+        // Reset to original data
+        chartData = JSON.parse(JSON.stringify(originalData));
+        
+        // Clear date inputs
+        document.getElementById('startDate').value = '';
+        document.getElementById('endDate').value = '';
+        
+        // Reset quick filter buttons
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector('[onclick*="all"]').classList.add('active');
+        
+        // Update metrics to original values
+        document.getElementById('metricProperties').textContent = {{ total_properties }};
+        document.getElementById('metricBusinesses').textContent = {{ total_businesses }};
+        
+        {% if current_user.role == 'admin' %}
+        document.getElementById('metricRevenue').textContent = '{{ format_currency(total_revenue) }}';
+        document.getElementById('metricInvoices').textContent = {{ total_property_invoices + total_business_invoices }};
+        document.getElementById('invoicesPaid').textContent = '{{ paid_property_invoices + paid_business_invoices }} paid';
+        document.getElementById('invoicesPending').textContent = '{{ (total_property_invoices + total_business_invoices) - (paid_property_invoices + paid_business_invoices) }} pending';
+        {% endif %}
+        
+        // Refresh chart
+        create3DPieChart();
+        updateLegend(currentFilter);
+        
+        // Show reset message
+        const message = document.createElement('div');
+        message.className = 'alert alert-success';
+        message.style.position = 'fixed';
+        message.style.top = '80px';
+        message.style.right = '20px';
+        message.style.zIndex = '9999';
+        message.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>Filters reset - Showing all data</span>
+        `;
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            message.style.transition = 'opacity 0.3s';
+            message.style.opacity = '0';
+            setTimeout(() => message.remove(), 300);
+        }, 3000);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize 3D chart
+        create3DPieChart();
+        updateLegend(currentFilter);
+        
+        // DON'T auto-apply filter on load - just show original data
+        // User can click quick filters if they want to filter
+        
         // Animate metric cards
         const cards = document.querySelectorAll('.metric-card');
         cards.forEach((card, index) => {
@@ -557,4 +1056,49 @@
         });
     });
 </script>
+
+<!-- Add this CSS for the row class if not already present -->
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -0.75rem;
+    }
+    
+    .col-md-5, .col-md-7, .col-md-12 {
+        padding: 0 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .col-md-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+    
+    .col-md-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+    
+    .col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    @media (max-width: 768px) {
+        .col-md-5, .col-md-7 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+    
+    .h-100 {
+        height: 100%;
+    }
+    
+    .card-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+</style>
 {% endblock %}
