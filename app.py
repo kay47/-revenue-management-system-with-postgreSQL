@@ -653,18 +653,50 @@ def validate_numeric_input(value, field_name, min_value=0, max_value=None, allow
             raise e
         raise ValueError(f"Invalid {field_name}: must be a valid number")
 
-def validate_phone_number(phone):
-    """Validate Ghana phone number format"""
-    import re
-    # Remove spaces and dashes
-    phone = re.sub(r'[\s\-]', '', phone)
+def format_phone_number(phone_number):
+    """
+    Format phone number to international format for SMS
+    Accepts any format, tries to convert to +233 (Ghana) format
+    Returns: tuple (success: bool, formatted_number: str, error_message: str)
+    """
+    try:
+        import re
+        
+        if not phone_number:
+            return False, None, 'Phone number is required'
+        
+        # Remove all non-digit characters
+        digits = re.sub(r'\D', '', str(phone_number))
+        
+        if not digits:
+            return False, None, 'No valid digits found in phone number'
+        
+        # Try to format as Ghana number (+233)
+        if len(digits) == 10 and digits.startswith('0'):
+            # 0241234567 -> +233241234567
+            formatted = '+233' + digits[1:]
+            return True, formatted, None
+        
+        elif len(digits) == 9:
+            # 241234567 -> +233241234567
+            formatted = '+233' + digits
+            return True, formatted, None
+        
+        elif len(digits) == 12 and digits.startswith('233'):
+            # 233241234567 -> +233241234567
+            formatted = '+' + digits
+            return True, formatted, None
+        
+        elif len(digits) >= 10 and len(digits) <= 15:
+            # Generic international number
+            formatted = '+' + digits
+            return True, formatted, None
+        
+        else:
+            return False, None, f'Invalid phone number format. {len(digits)} digits provided. Expected 9-15 digits.'
     
-    # Check if it matches Ghana phone format (10 digits starting with 0, or with country code)
-    pattern = r'^(0|233)\d{9}$'
-    if not re.match(pattern, phone):
-        raise ValueError("Invalid phone number format. Use format: 0241234567 or 233241234567")
-    
-    return phone
+    except Exception as e:
+        return False, None, str(e)
 
 def validate_email(email):
     """Validate email format"""
@@ -1894,7 +1926,12 @@ def create_property():
             #  FIX: Validate phone number
             primary_contact = None
             if request.form.get('primary_contact'):
-                primary_contact = validate_phone_number(request.form['primary_contact'])
+                # format_phone_number returns (success: bool, formatted_number: str, error_message: str)
+                success, formatted_phone, phone_err = format_phone_number(request.form['primary_contact'])
+                if not success:
+                    flash(f'Invalid primary contact: {phone_err}', 'error')
+                    return render_template('property_create.html')
+                primary_contact = formatted_phone
 
             
             #  FIX: Validate email if provided
