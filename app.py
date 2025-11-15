@@ -139,57 +139,6 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
-# 🔐 Enforce HTTPS only in production
-if not app.debug:
-    from flask_talisman import Talisman
-    
-    # Configure Talisman for security headers + HTTPS enforcement
-    csp = {
-        'default-src': [
-            "'self'"
-        ],
-        'script-src': [
-            "'self'",
-            "'unsafe-inline'",  # Allow inline scripts (for your templates)
-        ],
-        'style-src': [
-            "'self'",
-            "'unsafe-inline'",  # Allow inline styles (for your CSS)
-        ],
-        'img-src': [
-            "'self'",
-            "data:",  # Allow data: URIs for images
-        ]
-    }
-    
-    Talisman(
-        app,
-        force_https=True,
-        strict_transport_security=True,
-        strict_transport_security_max_age=31536000,  # 1 year
-        content_security_policy=csp,
-        content_security_policy_nonce_in=['script-src'],  # Add nonce support
-        # 🔧 CRITICAL: Trust proxy headers (for Render/Heroku/etc)
-        force_https_permanent=False,  # Use 302 instead of 301
-        session_cookie_secure=True,
-        session_cookie_http_only=True
-    )
-    
-    # 🔧 CRITICAL: Configure Flask to trust proxy headers
-    from werkzeug.middleware.proxy_fix import ProxyFix
-    app.wsgi_app = ProxyFix(
-        app.wsgi_app, 
-        x_for=1,      # Trust X-Forwarded-For
-        x_proto=1,    # Trust X-Forwarded-Proto (HTTPS detection)
-        x_host=1,     # Trust X-Forwarded-Host
-        x_prefix=1    # Trust X-Forwarded-Prefix
-    )
-
-# ✔ Secure cookies (works for both dev and prod)
-app.config['SESSION_COOKIE_SECURE'] = not app.debug      # Only secure on HTTPS
-app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
-
 # Create necessary directories
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs('logs', exist_ok=True)
