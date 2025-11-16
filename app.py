@@ -85,7 +85,7 @@ class Config:
     RATELIMIT_STORAGE_URL = "redis://localhost:6379"  # Use Redis in production
     
     # 🆕 NEW: Activity timeout settings
-    AUTO_LOCK_TIMEOUT = 120  # 2 minutes (in seconds)
+    AUTO_LOCK_TIMEOUT = 300  # 5 minutes (in seconds)
     AUTO_LOGOUT_TIMEOUT = 900  # 15 minutes (in seconds)
     
 # ==================== OTP Configuration ====================
@@ -438,8 +438,10 @@ class TemporaryPassword(db.Model):
     created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     # Fix: Explicitly specify foreign keys and disable backrefs that could cause conflicts
-    user = db.relationship('User', foreign_keys=[user_id], backref=db.backref('temp_passwords', lazy='dynamic'))
-    creator = db.relationship('User', foreign_keys=[created_by], backref=db.backref('created_temp_passwords', lazy='dynamic'))
+    user = db.relationship('User', foreign_keys=[user_id], 
+                          backref=db.backref('temp_passwords', lazy='dynamic', cascade='all, delete-orphan'))
+    creator = db.relationship('User', foreign_keys=[created_by], 
+                            backref=db.backref('created_temp_passwords', lazy='dynamic'))
     
     def is_valid(self):
         """Check if temporary password is still valid"""
@@ -5263,10 +5265,10 @@ def create_user():
         db.session.add(user)
         db.session.flush()  # Get user.id
         
-        # 🔒 STORE TEMPORARY PASSWORD
+        # Store temporary password record (hashed)
         temp_password_record = TemporaryPassword(
             user_id=user.id,
-            temp_password_hash=generate_password_hash(temp_password),  # Hash it!
+            temp_password=generate_password_hash(temp_password),
             expires_at=datetime.utcnow() + timedelta(days=7),
             created_by=current_user.id
         )
@@ -5275,10 +5277,12 @@ def create_user():
         
         log_action('User created with temp password', 'User', user.id, f'Role: {role}')
         
-        # Show temporary password to admin
-        flash(f'User created successfully! <br><strong>Temporary Password:</strong> <code>{temp_password}</code><br>⚠️ The user must reset their password on first login. Please share this password securely.<br><em>Password stored in system for 7 days.</em>', 'success')
-        
-        return redirect(url_for('admin_users'))
+        # ✅ REDIRECT TO A DEDICATED SUCCESS PAGE WITH PASSWORD DISPLAY
+        return render_template('admin/user_created_success.html',
+                             username=username,
+                             email=email,
+                             temp_password=temp_password,
+                             user=user)
 
     return render_template('admin/create_user.html')
 

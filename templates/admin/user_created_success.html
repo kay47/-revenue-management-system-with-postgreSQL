@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}User Created Successfully{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Success Card -->
+            <div class="card border-success shadow-lg">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-check-circle"></i> User Created Successfully
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Important!</strong> This is the only time you'll see this password. 
+                        Please copy it now and share it securely with the user.
+                    </div>
+
+                    <!-- User Details -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <strong>Username:</strong>
+                            <div class="form-control bg-light">{{ username }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Email:</strong>
+                            <div class="form-control bg-light">{{ email }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Temporary Password - Prominent Display -->
+                    <div class="card bg-light border-primary mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="fas fa-key"></i> Temporary Password
+                            </h5>
+                            <div class="input-group input-group-lg">
+                                <input type="text" 
+                                       class="form-control font-monospace bg-white" 
+                                       id="tempPasswordDisplay" 
+                                       value="{{ temp_password }}" 
+                                       readonly 
+                                       style="font-size: 1.5rem; letter-spacing: 2px; font-weight: bold;">
+                                <button class="btn btn-primary" 
+                                        type="button" 
+                                        onclick="copyPassword()"
+                                        id="copyBtn">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <small class="text-muted mt-2 d-block">
+                                <i class="fas fa-info-circle"></i> 
+                                Password expires in 7 days. User must change it on first login.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-clipboard-list"></i> Next Steps:</h6>
+                        <ol class="mb-0">
+                            <li>Copy the temporary password above</li>
+                            <li>Share it securely with the user ({{ username }})</li>
+                            <li>Inform them they must change it on first login</li>
+                            <li>The user will be forced to set a new password when they log in</li>
+                        </ol>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ url_for('admin_users') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Users
+                        </a>
+                        <a href="{{ url_for('create_user') }}" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Create Another User
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print-Friendly Version -->
+            <div class="card mt-3 d-print-block" id="printVersion">
+                <div class="card-body">
+                    <button class="btn btn-outline-primary" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Credentials
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyPassword() {
+    const passwordInput = document.getElementById('tempPasswordDisplay');
+    const copyBtn = document.getElementById('copyBtn');
+    
+    // Select and copy
+    passwordInput.select();
+    passwordInput.setSelectionRange(0, 99999); // For mobile
+    
+    navigator.clipboard.writeText(passwordInput.value).then(() => {
+        // Change button to show success
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        copyBtn.classList.remove('btn-primary');
+        copyBtn.classList.add('btn-success');
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            copyBtn.classList.remove('btn-success');
+            copyBtn.classList.add('btn-primary');
+        }, 2000);
+    }).catch(err => {
+        alert('Failed to copy. Please copy manually.');
+    });
+}
+
+// Warn before leaving page
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = 'Are you sure? You won\'t be able to see this password again.';
+});
+</script>
+
+<style>
+@media print {
+    .d-print-none { display: none !important; }
+    .d-print-block { display: block !important; }
+    
+    #printVersion {
+        page-break-before: always;
+    }
+}
+</style>
+{% endblock %}

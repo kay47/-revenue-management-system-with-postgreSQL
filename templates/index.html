@@ -451,9 +451,12 @@
                     <button class="filter-btn active" onclick="changeFilter('entities')" data-filter="entities">
                         <span style="font-size: 1.2rem;">🏢</span> Entities
                     </button>
+
+                    {% if current_user.role == 'admin' %}
                     <button class="filter-btn" onclick="changeFilter('payments')" data-filter="payments">
                         <span style="font-size: 1.2rem;">💰</span> Payments
                     </button>
+                    {% endif %}
                     <button class="filter-btn" onclick="changeFilter('invoices')" data-filter="invoices">
                         <span style="font-size: 1.2rem;">📄</span> Invoices
                     </button>
@@ -493,6 +496,7 @@
     
     <!-- Recent Payments -->
     <div class="col-md-7">
+        {% if current_user.role == 'admin' %}
         {% if recent_payments %}
         <div class="card h-100">
             <div class="card-header">
@@ -561,6 +565,7 @@
                 </a>
             </div>
         </div>
+        {% endif %}
         {% endif %}
     </div>
 </div>

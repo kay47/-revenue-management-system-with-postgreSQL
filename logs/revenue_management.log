@@ -22975,3 +22975,568 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate
 2025-11-16 00:09:13,503 INFO: Response e6e323f47464a6d3: 304 in 0.033s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
 2025-11-16 00:09:13,718 INFO: Request 88788567231c04f4: GET /static/favicon.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
 2025-11-16 00:09:13,762 INFO: Response 88788567231c04f4: 304 in 0.044s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:11:15,155 INFO: Request 38f86c771760ae93: GET /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:11:36,185 INFO: Request e82e436a95b242a9: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:11:45,403 INFO: Response e82e436a95b242a9: 200 in 9.218s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:11:45,849 INFO: Request d1cb0f93c1c55957: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:11:45,853 INFO: Response d1cb0f93c1c55957: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:11:46,234 INFO: Request 30f52b0bb708e46f: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:11:46,237 INFO: Response 30f52b0bb708e46f: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:11:46,392 INFO: Request 997c948e4b9ca38d: GET /static/favicon.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:11:46,395 INFO: Response 997c948e4b9ca38d: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:12:44,088 INFO: Response 38f86c771760ae93: 200 in 88.935s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:13:00,545 INFO: Request 63b8ce38f813608a: GET /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:13:05,398 INFO: Response 63b8ce38f813608a: 200 in 4.852s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:13:05,919 INFO: Request da768153773921d5: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:13:05,923 INFO: Response da768153773921d5: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:13:06,203 INFO: Request 4f2678de0f9e2b2c: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:13:06,206 INFO: Response 4f2678de0f9e2b2c: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:13:36,431 INFO: Request 01ee3ae22e46d33f: POST /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:13:41,882 ERROR: Unhandled exception in request 01ee3ae22e46d33f: 'temp_password_hash' is an invalid keyword argument for TemporaryPassword [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:193]
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py", line 5267, in create_user
+    temp_password_record = TemporaryPassword(
+                           ^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+TypeError: 'temp_password_hash' is an invalid keyword argument for TemporaryPassword
+2025-11-16 00:18:00,998 INFO: Request 4b127cf7f1749660: POST /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:18:08,922 ERROR: Unhandled exception in request 4b127cf7f1749660: 'temp_password_hash' is an invalid keyword argument for TemporaryPassword [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:193]
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py", line 5267, in create_user
+    temp_password_record = TemporaryPassword(
+                           ^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\decl_base.py", line 2179, in _declarative_constructor
+    raise TypeError(
+TypeError: 'temp_password_hash' is an invalid keyword argument for TemporaryPassword
+2025-11-16 00:20:31,546 INFO: Revenue Management System startup [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:214]
+2025-11-16 00:21:05,396 INFO: Request 6d1704eb428bcca1: POST /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:05,398 INFO: Response 6d1704eb428bcca1: 302 in 0.001s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:05,415 INFO: Request 13977f4c76470b75: GET /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:05,631 INFO: Response 13977f4c76470b75: 200 in 0.217s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:05,846 INFO: Request 936bff35b4e2c4cc: GET /static/images/undraw_team-up_qeem.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:06,163 INFO: Response 936bff35b4e2c4cc: 304 in 0.317s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:42,243 INFO: Request 22283e38b80eaaca: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:47,474 INFO: AUDIT: User logged in - User: 1, Entity: None/None, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:846]
+2025-11-16 00:21:47,475 INFO: Response 22283e38b80eaaca: 302 in 5.231s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:47,493 INFO: Request f684796f2f08c7e4: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:56,417 INFO: Response f684796f2f08c7e4: 200 in 8.925s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:57,888 INFO: Request 9eb6319b89647b0e: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:57,895 INFO: Response 9eb6319b89647b0e: 304 in 0.006s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:21:58,328 INFO: Request c4c6b8470b523f0b: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:21:58,343 INFO: Response c4c6b8470b523f0b: 304 in 0.015s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:22:06,179 INFO: Request 5989293b00218a00: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:22:48,051 INFO: Response 5989293b00218a00: 200 in 41.872s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:22:52,038 INFO: Request 6ac89e20c89c4291: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:22:52,056 INFO: Response 6ac89e20c89c4291: 304 in 0.018s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:22:52,312 INFO: Request a81b901d7936ebe8: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:22:52,324 INFO: Response a81b901d7936ebe8: 304 in 0.012s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:00,630 INFO: Request b854049210bfe94a: GET /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:03,156 INFO: Response b854049210bfe94a: 200 in 2.527s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:04,393 INFO: Request 2b6042abba7932a4: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:04,399 INFO: Response 2b6042abba7932a4: 304 in 0.006s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:04,482 INFO: Request fb7fef9971d90768: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:04,633 INFO: Response fb7fef9971d90768: 304 in 0.151s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:04,736 INFO: Request e1b0946c4b5fb507: GET /static/favicon.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:04,744 INFO: Response e1b0946c4b5fb507: 304 in 0.008s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:13,417 INFO: Request 108b31cb3dac0f89: POST /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:24,986 INFO: AUDIT: User created with temp password - User: 1, Entity: User/6, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:846]
+2025-11-16 00:23:24,993 INFO: Response 108b31cb3dac0f89: 302 in 11.576s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:25,015 INFO: Request 32151ecb901d05cc: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:31,818 INFO: Response 32151ecb901d05cc: 200 in 6.803s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:32,422 INFO: Request cc860f20d007fb63: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:32,424 INFO: Response cc860f20d007fb63: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:32,773 INFO: Request 2b4b84f4b6c5cdc2: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:32,783 INFO: Response 2b4b84f4b6c5cdc2: 304 in 0.011s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:51,159 INFO: Request 9f3bc2c63113820f: GET /admin/temp-passwords from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:56,341 INFO: Response 9f3bc2c63113820f: 200 in 5.181s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:57,306 INFO: Request 9b621204b1136cc0: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:57,365 INFO: Response 9b621204b1136cc0: 304 in 0.060s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:23:57,628 INFO: Request efaef48a9098c106: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:23:57,642 INFO: Response efaef48a9098c106: 304 in 0.014s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:26:15,146 INFO: Request c488a2ac3d8833b3: GET /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:26:18,683 INFO: Response c488a2ac3d8833b3: 200 in 3.537s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:27:03,652 INFO: Request ecd2027c8581f634: POST /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:27:06,700 INFO: AUDIT: Screen unlocked - User: 1, Entity: User/1, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:846]
+2025-11-16 00:27:06,701 INFO: Response ecd2027c8581f634: 302 in 3.048s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:27:06,714 INFO: Request 3c06fbe7a191bd9b: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:27:15,681 INFO: Response 3c06fbe7a191bd9b: 200 in 8.968s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:27:16,397 INFO: Request ec5f14e0952c72b2: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:27:16,407 INFO: Response ec5f14e0952c72b2: 304 in 0.009s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:27:16,741 INFO: Request 9fc02d1a841c7f43: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:27:16,753 INFO: Response 9fc02d1a841c7f43: 304 in 0.012s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:30:13,142 INFO: Request e54434ba0d8d1233: GET /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:30:15,142 INFO: Response e54434ba0d8d1233: 200 in 2.000s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:22,944 INFO: Revenue Management System startup [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:214]
+2025-11-16 00:34:38,349 INFO: Request 44e87cd7264cece2: POST /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:38,349 INFO: Response 44e87cd7264cece2: 302 in 0.000s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:38,366 INFO: Request 174af75c2038e06b: GET /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:38,447 INFO: Response 174af75c2038e06b: 200 in 0.080s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:38,734 INFO: Request bb1b75afb28f23f1: GET /static/images/undraw_team-up_qeem.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:39,444 INFO: Response bb1b75afb28f23f1: 304 in 0.710s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:45,150 INFO: Request 5eeeaca3f4fa34de: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:51,071 INFO: AUDIT: User logged in - User: 1, Entity: None/None, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:846]
+2025-11-16 00:34:51,071 INFO: Response 5eeeaca3f4fa34de: 302 in 5.921s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:51,087 INFO: Request e788bb6e7341a149: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:57,134 INFO: Response e788bb6e7341a149: 200 in 6.047s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:57,578 INFO: Request a3df40c2e83e41d7: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:57,582 INFO: Response a3df40c2e83e41d7: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:34:57,993 INFO: Request c866fffde2256cab: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:34:57,997 INFO: Response c866fffde2256cab: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:11,024 INFO: Request 860eb05a54ca6928: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:12,876 INFO: Response 860eb05a54ca6928: 200 in 1.853s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:13,300 INFO: Request 3f38691d537ccb8f: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:13,303 INFO: Response 3f38691d537ccb8f: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:13,947 INFO: Request c1cb3a7ad2853e61: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:13,949 INFO: Response c1cb3a7ad2853e61: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:24,322 INFO: Request f25454ca21203025: GET /admin/user/3/confirm-delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:29,251 INFO: Response f25454ca21203025: 200 in 4.929s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:30,020 INFO: Request a47546e64e1fc960: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:30,025 INFO: Response a47546e64e1fc960: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:30,202 INFO: Request 18ce945d669cba36: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:30,206 INFO: Response 18ce945d669cba36: 304 in 0.006s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:35,380 INFO: Request 25b0c69e4703b73a: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:52,669 INFO: Response 25b0c69e4703b73a: 200 in 17.289s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:53,312 INFO: Request d467361546c4475a: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:53,380 INFO: Response d467361546c4475a: 304 in 0.067s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:35:53,628 INFO: Request e3d513621f4658d0: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:35:53,645 INFO: Response e3d513621f4658d0: 304 in 0.017s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:05,176 INFO: Request 5ccde4a1f3b4fdd2: GET /admin/user/6/confirm-delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:07,220 INFO: Response 5ccde4a1f3b4fdd2: 200 in 2.044s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:07,665 INFO: Request 4bbad541496ca27e: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:07,669 INFO: Response 4bbad541496ca27e: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:07,910 INFO: Request 37db3b5d1921e45e: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:07,932 INFO: Response 37db3b5d1921e45e: 304 in 0.023s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:15,531 INFO: Request 67419fe15c48f330: POST /admin/user/6/delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:20,579 ERROR: Error deleting user: (psycopg2.errors.NotNullViolation) null value in column "user_id" of relation "temporary_password" violates not-null constraint
+DETAIL:  Failing row contains (2, null, pbkdf2:sha256:600000$MYFwMEtVRUnsRsnK$0d943c1613fe510660c72c670b..., 2025-11-16 00:23:18.933518, 2025-11-23 00:23:18.932318, f, null, 1).
+
+[SQL: UPDATE temporary_password SET user_id=%(user_id)s WHERE temporary_password.id = %(temporary_password_id)s]
+[parameters: {'user_id': None, 'temporary_password_id': 2}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:5315]
+2025-11-16 00:36:20,596 INFO: Response 67419fe15c48f330: 302 in 5.065s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:20,620 INFO: Request dc15d9d72db55aae: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:22,318 INFO: Response dc15d9d72db55aae: 200 in 1.698s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:22,796 INFO: Request 54d7d83c853f006d: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:22,801 INFO: Response 54d7d83c853f006d: 304 in 0.005s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:23,023 INFO: Request 0459ec4b8cb19675: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:23,041 INFO: Response 0459ec4b8cb19675: 304 in 0.017s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:30,333 INFO: Request 8c9bb997ae871c22: GET /admin/user/6/confirm-delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:32,266 INFO: Response 8c9bb997ae871c22: 200 in 1.933s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:32,812 INFO: Request 2b07a51fbbcbad01: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:32,816 INFO: Response 2b07a51fbbcbad01: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:33,007 INFO: Request 82cdc41003035c64: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:33,020 INFO: Response 82cdc41003035c64: 304 in 0.013s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:36,527 INFO: Request 6bd4797e339bff4a: POST /admin/user/6/delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:41,547 ERROR: Error deleting user: (psycopg2.errors.NotNullViolation) null value in column "user_id" of relation "temporary_password" violates not-null constraint
+DETAIL:  Failing row contains (2, null, pbkdf2:sha256:600000$MYFwMEtVRUnsRsnK$0d943c1613fe510660c72c670b..., 2025-11-16 00:23:18.933518, 2025-11-23 00:23:18.932318, f, null, 1).
+
+[SQL: UPDATE temporary_password SET user_id=%(user_id)s WHERE temporary_password.id = %(temporary_password_id)s]
+[parameters: {'user_id': None, 'temporary_password_id': 2}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj) [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:5315]
+2025-11-16 00:36:41,547 INFO: Response 6bd4797e339bff4a: 302 in 5.020s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:41,566 INFO: Request fff3d04a77c4734e: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:43,701 INFO: Response fff3d04a77c4734e: 200 in 2.135s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:44,234 INFO: Request 2d34b4923f2ba79d: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:44,239 INFO: Response 2d34b4923f2ba79d: 304 in 0.005s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:36:44,302 INFO: Request a71fbf723c834296: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:36:44,305 INFO: Response a71fbf723c834296: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:38:08,892 INFO: Revenue Management System startup [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:214]
+2025-11-16 00:38:22,543 INFO: Request 684d0ec957455774: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:22,545 INFO: Response 684d0ec957455774: 302 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:38:22,576 INFO: Request 4657e4286a0c518a: GET /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:22,588 INFO: Response 4657e4286a0c518a: 200 in 0.013s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:38:22,767 INFO: Request d75b89a6b1fe43f9: GET /static/images/undraw_team-up_qeem.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:23,072 INFO: Response d75b89a6b1fe43f9: 304 in 0.305s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:38:25,643 INFO: Request 2c4b255e93d6038b: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:28,349 INFO: AUDIT: User logged in - User: 1, Entity: None/None, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:38:28,351 INFO: Response 2c4b255e93d6038b: 302 in 2.707s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:38:28,362 INFO: Request 34ae6701768aceae: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:34,411 INFO: Request 53c3d737e7e8477a: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:38:58,590 ERROR: Unhandled exception in request 34ae6701768aceae: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT bop_invoice.id AS bop_invoice_id, bop_invoice.invoice_no AS bop_invoice_invoice_no, bop_invoice.business_id AS bop_invoice_business_id, bop_invoice.product_name AS bop_invoice_product_name, bop_invoice.amount AS bop_invoice_amount, bop_invoice.year AS bop_invoice_year, bop_invoice.status AS bop_invoice_status, bop_invoice.invoice_date AS bop_invoice_invoice_date, bop_invoice.due_date AS bop_invoice_due_date, bop_invoice.tax_rate AS bop_invoice_tax_rate, bop_invoice.tax_amount AS bop_invoice_tax_amount, bop_invoice.total_amount AS bop_invoice_total_amount, bop_invoice.description AS bop_invoice_description, bop_invoice.created_at AS bop_invoice_created_at 
+FROM bop_invoice 
+WHERE bop_invoice.status = %(status_1)s) AS anon_1]
+[parameters: {'status_1': 'Paid'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:193]
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py", line 1888, in index
+    paid_business_invoices = BOPInvoice.query.filter_by(status='Paid').count()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 3146, in count
+    self._legacy_from_self(col).enable_eagerloads(False).scalar()
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 2835, in scalar
+    ret = self.one()
+          ^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 2808, in one
+    return self._iter().one()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT bop_invoice.id AS bop_invoice_id, bop_invoice.invoice_no AS bop_invoice_invoice_no, bop_invoice.business_id AS bop_invoice_business_id, bop_invoice.product_name AS bop_invoice_product_name, bop_invoice.amount AS bop_invoice_amount, bop_invoice.year AS bop_invoice_year, bop_invoice.status AS bop_invoice_status, bop_invoice.invoice_date AS bop_invoice_invoice_date, bop_invoice.due_date AS bop_invoice_due_date, bop_invoice.tax_rate AS bop_invoice_tax_rate, bop_invoice.tax_amount AS bop_invoice_tax_amount, bop_invoice.total_amount AS bop_invoice_total_amount, bop_invoice.description AS bop_invoice_description, bop_invoice.created_at AS bop_invoice_created_at 
+FROM bop_invoice 
+WHERE bop_invoice.status = %(status_1)s) AS anon_1]
+[parameters: {'status_1': 'Paid'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-16 00:39:16,489 ERROR: Unhandled exception in request 53c3d737e7e8477a: (psycopg2.OperationalError) connection to server at "aws-0-us-west-2.pooler.supabase.com" (35.160.209.8), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "aws-0-us-west-2.pooler.supabase.com" (54.70.143.232), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8) [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:193]
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "aws-0-us-west-2.pooler.supabase.com" (35.160.209.8), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "aws-0-us-west-2.pooler.supabase.com" (54.70.143.232), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_limiter\_limits.py", line 326, in __inner
+    return cast(R, flask.current_app.ensure_sync(obj)(*a, **k))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py", line 1745, in login
+    if current_user.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\local.py", line 311, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\local.py", line 515, in _get_current_object
+    return get_name(local())  # type: ignore
+                    ^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\utils.py", line 25, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+                                      ^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\utils.py", line 372, in _get_user
+    current_app.login_manager._load_user()
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask_login\login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py", line 235, in load_user
+    return User.query.get(int(user_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in get
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\deprecations.py", line 386, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 1126, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\query.py", line 1135, in _get_impl
+    return self.session._get_impl(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 3873, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\loading.py", line 695, in load_on_pk_identity
+    session.execute(
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2241, in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 2110, in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in _connection_for_bind
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\orm\session.py", line 1189, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 3277, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 2440, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\base.py", line 3301, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\sqlalchemy\engine\default.py", line 629, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kwame\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "aws-0-us-west-2.pooler.supabase.com" (35.160.209.8), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "aws-0-us-west-2.pooler.supabase.com" (54.70.143.232), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-11-16 00:39:31,120 INFO: Request 308e509240e17b48: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:20,330 INFO: Request 4b7dbb5a0360198b: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:25,928 INFO: Response 4b7dbb5a0360198b: 302 in 5.598s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:26,218 INFO: Request 96fb2761ef8fa974: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:30,253 INFO: Response 96fb2761ef8fa974: 200 in 4.034s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:30,580 INFO: Request b13e485f6bf8e0db: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:30,583 INFO: Response b13e485f6bf8e0db: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:30,822 INFO: Request fea34eea3b01046e: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:30,838 INFO: Response fea34eea3b01046e: 304 in 0.018s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:31,217 INFO: Request 33bc6ff9dd0db958: GET /static/favicon.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:31,220 INFO: Response 33bc6ff9dd0db958: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:39,513 INFO: Request 010fbdf6caddb525: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:41,292 INFO: Response 010fbdf6caddb525: 200 in 1.779s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:41,784 INFO: Request 0ab2dca3ea4d9965: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:41,790 INFO: Response 0ab2dca3ea4d9965: 304 in 0.006s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:41,864 INFO: Request 79643826be701f0a: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:41,866 INFO: Response 79643826be701f0a: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:45,200 INFO: Request 9f79847ce5513845: GET /admin/user/6/confirm-delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:46,861 INFO: Response 9f79847ce5513845: 200 in 1.662s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:47,267 INFO: Request 82a2a44c839a52e2: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:47,269 INFO: Response 82a2a44c839a52e2: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:47,466 INFO: Request 3a8a30c6767915ae: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:41:47,468 INFO: Response 3a8a30c6767915ae: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:41:57,290 INFO: Request 8682502517b509e4: POST /admin/user/6/delete from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:03,281 INFO: AUDIT: User deleted - User: 1, Entity: User/6, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:42:03,281 INFO: Response 8682502517b509e4: 302 in 5.991s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:03,301 INFO: Request b8527526b7c80008: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:04,959 INFO: Response b8527526b7c80008: 200 in 1.657s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:05,350 INFO: Request 37e6b85a939c8771: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:05,355 INFO: Response 37e6b85a939c8771: 304 in 0.005s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:05,568 INFO: Request 1e68475b2f3a938e: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:05,583 INFO: Response 1e68475b2f3a938e: 304 in 0.014s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:17,313 INFO: Request 47e3528b8964b960: GET /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:18,693 INFO: Response 47e3528b8964b960: 200 in 1.379s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:19,121 INFO: Request 5dee28dc1147e99b: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:19,123 INFO: Response 5dee28dc1147e99b: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:19,347 INFO: Request 35cb3ede1504acff: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:42:19,361 INFO: Response 35cb3ede1504acff: 304 in 0.014s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:42:25,741 INFO: Request d450772bc03e7840: POST /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:43:03,781 INFO: AUDIT: User created with temp password - User: 1, Entity: User/7, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:43:07,635 INFO: Response d450772bc03e7840: 200 in 41.893s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:43:08,437 INFO: Request 4989e731cbee6a36: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:43:08,442 INFO: Response 4989e731cbee6a36: 304 in 0.005s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:43:08,594 INFO: Request da8cb6f165793f87: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:43:08,636 INFO: Response da8cb6f165793f87: 304 in 0.043s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:45:54,767 INFO: Request 0cee1ba6cb508d0e: GET /admin/users/create from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:45:56,247 INFO: Response 0cee1ba6cb508d0e: 200 in 1.480s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:45:56,738 INFO: Request 857eec7deecdfbac: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:45:56,886 INFO: Response 857eec7deecdfbac: 304 in 0.146s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:46:02,135 INFO: Request cb0b228bdd29029d: GET /admin/users from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:46:21,078 INFO: Response cb0b228bdd29029d: 200 in 18.942s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:46:21,435 INFO: Request 73af2fa5a41fd47f: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:46:21,498 INFO: Response 73af2fa5a41fd47f: 304 in 0.064s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:46:21,713 INFO: Request 2f593571e9b6ba76: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:46:21,717 INFO: Response 2f593571e9b6ba76: 304 in 0.004s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:51:22,137 INFO: Request a7eb372f5716b227: GET /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:51:26,573 INFO: Response a7eb372f5716b227: 200 in 4.436s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:56:37,656 INFO: Request cb731d82857da32f: POST /lock-screen from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:56:46,122 INFO: AUDIT: Screen unlocked - User: 1, Entity: User/1, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:56:46,123 INFO: Response cb731d82857da32f: 302 in 8.467s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:56:46,137 INFO: Request ac25dd4358cc6aa1: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:56:52,639 INFO: Response ac25dd4358cc6aa1: 200 in 6.502s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:56:53,083 INFO: Request b4053466347be249: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:56:53,088 INFO: Response b4053466347be249: 304 in 0.005s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:56:53,604 INFO: Request 477e3964ffbc18a7: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:56:53,606 INFO: Response 477e3964ffbc18a7: 304 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:07,818 INFO: Request 99a535f9387fa080: GET /logout from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:09,814 INFO: AUDIT: User logged out - User: 1, Entity: None/None, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:57:09,818 INFO: Response 99a535f9387fa080: 302 in 1.999s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:09,833 INFO: Request 4fc1c918332973cb: GET /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:09,835 INFO: Response 4fc1c918332973cb: 200 in 0.002s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:09,952 INFO: Request b2a3bd0b9980f1d5: GET /static/images/undraw_team-up_qeem.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:09,959 INFO: Response b2a3bd0b9980f1d5: 304 in 0.006s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:20,919 INFO: Request 271e29e0df13be05: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:22,747 INFO: Response 271e29e0df13be05: 200 in 1.828s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:23,155 INFO: Request 4750b36406a636e6: GET /static/images/undraw_team-up_qeem.svg from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:23,256 INFO: Response 4750b36406a636e6: 304 in 0.102s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:44,201 INFO: Request cc73e87d76f526bc: POST /login from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:46,649 INFO: AUDIT: User logged in - User: 7, Entity: None/None, IP: 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:848]
+2025-11-16 00:57:46,650 INFO: Response cc73e87d76f526bc: 302 in 2.449s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:46,664 INFO: Request 1d679554f2ae1ed1: GET / from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:51,663 INFO: Response 1d679554f2ae1ed1: 200 in 4.999s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:52,094 INFO: Request 7d11e0abd832ef96: GET /static/js/realtime-search.js from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:52,094 INFO: Response 7d11e0abd832ef96: 304 in 0.000s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
+2025-11-16 00:57:52,516 INFO: Request e1737297dd8f43b5: GET /static/favicon.ico from 127.0.0.1 [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:161]
+2025-11-16 00:57:52,519 INFO: Response e1737297dd8f43b5: 304 in 0.003s [in C:\Users\kwame\OneDrive\Desktop\revenue-management-system-main\app.py:172]
